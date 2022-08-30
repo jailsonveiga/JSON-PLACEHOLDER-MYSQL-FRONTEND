@@ -1,0 +1,24 @@
+{
+  "name": "json-placeholder-mysql-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for JSONPlaceholder (SQL) API project.\r Very simple frontend created using;\r express + vanilla HTML + JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jailsonveiga/JSON-PLACEHOLDER-MYSQL-FRONTEND.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jailsonveiga/JSON-PLACEHOLDER-MYSQL-FRONTEND/issues"
+  },
+  "homepage": "https://github.com/jailsonveiga/JSON-PLACEHOLDER-MYSQL-FRONTEND#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
