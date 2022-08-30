@@ -8,9 +8,9 @@ const app = express();
 app.use(express.static("public"));
 
 // create a route for the root path
-app.get("/test", function (req, res) {
+/*app.get("/test", function (req, res) {
   res.send("Hello World");
-});
+});*/
 
 // sets the port to listen on
 app.listen(3000, () => {
