@@ -2,7 +2,7 @@
   "name": "json-placeholder-mysql-frontend",
   "version": "1.0.0",
   "description": "Frontend for JSONPlaceholder (SQL) API project.\r Very simple frontend created using;\r express + vanilla HTML + JS",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
