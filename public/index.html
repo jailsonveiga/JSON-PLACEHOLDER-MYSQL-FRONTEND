@@ -7,10 +7,25 @@
     <title>JSON PLACEHOLDER API UI</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const apiURL = "http://localhost:8080/api/users/sql/all";
+
+      const getAllUsers = () => {
+        fetch(apiURL)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("response").innerText = JSON.stringify(
+              data,
+              null,
+              "\t"
+            );
+          })
+          .catch((error) => console.log(error));
+      };
+    </script>
 
     <h1>JSON PLACEHOLDER</h1>
-    <button>Get All Users</button>
+    <button onclick="getAllUsers">Get All Users</button>
 
     <p id="" response></p>
   </body>
