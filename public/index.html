@@ -23,6 +23,15 @@
         document.getElementById("response").innerText = "";
       };
 
+      const clearInput = () => {
+        document.getElementById("name").value = "";
+        document.getElementById("username").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("userId").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("website").value = "";
+      };
+
       const reqAllUsers = (
         method // GET, POST, DELETE
       ) => {
@@ -63,8 +72,7 @@
         let errorMsg = "";
         if (isNaN(userId)) {
           errorMsg = "Please enter a valid user ID. Must be a number";
-        }
-        if (userId < 1) {
+        } else if (userId < 1) {
           errorMsg = "Please enter a valid user ID. Must be greater than 0";
         }
 
@@ -160,6 +168,85 @@
             document.getElementById("email").value = "";
           });
       };
+
+      const updateUser = () => {
+        const name = document.getElementById("name").value;
+        const userName = document.getElementById("username").value;
+        const userEmail = document.getElementById("email").value;
+        const userId = parseInt(document.getElementById("userId").value);
+
+        console.log(userName, userEmail);
+
+        let errorMsg = [];
+
+        if (name === "") {
+          errorMsg.push("Please enter a valid name");
+        }
+
+        if (userName === "") {
+          errorMsg.push("Please enter a valid user name");
+        }
+
+        if (userEmail === "") {
+          errorMsg.push("Please enter a valid Email");
+        }
+
+        if (isNaN(userId)) {
+          errorMsg.push("Please enter a valid user ID. Must be a number");
+        } else if (userId < 1) {
+          errorMsg.push("Please enter a valid user ID. Must be greater than 0");
+        }
+
+        if (errorMsg.length > 0) {
+          console.log(errorMsg);
+          document.getElementById("name").value = "";
+          document.getElementById("username").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("response").innerText = errorMsg.join("\n");
+          return;
+        }
+
+        const updateURL = apiURL + "/users/sql/" + userId;
+        const updateBody = {
+          id: userId,
+          name: name,
+          username: userName,
+          email: userEmail,
+        };
+
+        console.log(updateURL, updateBody);
+        console.log(JSON.stringify(updateBody));
+
+        fetch(updateURL, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updateBody),
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            if (isValidJSON(data)) {
+              const parseJSON = JSON.parse(data);
+              document.getElementById("response").innerText = JSON.stringify(
+                parseJSON,
+                null,
+                "\t"
+              );
+            } else {
+              document.getElementById("response").innerText = data;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            document.getElementById("response").innerHTML = error;
+          })
+          .finally(() => {
+            document.getElementById("name").value = "";
+            document.getElementById("username").value = "";
+            document.getElementById("email").value = "";
+          });
+      };
     </script>
 
     <h1>JSON PLACEHOLDER</h1>
@@ -172,11 +259,13 @@
       <button onclick="requestUserId ('GET')">Get User By ID</button>
       <button onclick="requestUserId ('DELETE')">Delete User By ID</button>
     </div>
-
+    <button onclick="updateUser()">Update User</button>
     <div>
       <input id="name" type="text" placeholder="Name" value="tempName" />
       <input id="username" type="text" placeholder="Username" value="tempUN" />
       <input id="email" type="text" placeholder="Email" value="tempEM" />
+      <input id="phone" type="text" placeholder="Phone" value="tempPh" />
+      <input id="website" type="text" placeholder="Website" value="tempWeb" />
       <button onclick="postNewUser()">Create New User</button>
     </div>
     <p id="response"></p>
