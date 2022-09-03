@@ -77,7 +77,6 @@
         }
 
         if (errorMsg !== "") {
-          document.getElementById("userId").value = "";
           document.getElementById("response").innerText = errorMsg;
           return;
         }
@@ -99,10 +98,6 @@
           .catch((error) => {
             console.log(error);
             document.getElementById("response").innerText = error;
-          })
-
-          .finally(() => {
-            document.getElementById("userId").value = "";
           });
       };
 
@@ -128,9 +123,6 @@
         }
         if (errorMsg.length > 0) {
           console.log(errorMsg);
-          document.getElementById("name").value = "";
-          document.getElementById("username").value = "";
-          document.getElementById("email").value = "";
           document.getElementById("response").innerText = errorMsg.join("\n");
           return;
         }
@@ -162,10 +154,6 @@
           .catch((error) => {
             console.log(error);
             document.getElementById("response").innerHTML = error;
-          })
-          .finally(() => {
-            document.getElementById("username").value = "";
-            document.getElementById("email").value = "";
           });
       };
 
@@ -199,9 +187,6 @@
 
         if (errorMsg.length > 0) {
           console.log(errorMsg);
-          document.getElementById("name").value = "";
-          document.getElementById("username").value = "";
-          document.getElementById("email").value = "";
           document.getElementById("response").innerText = errorMsg.join("\n");
           return;
         }
@@ -240,11 +225,6 @@
           .catch((error) => {
             console.log(error);
             document.getElementById("response").innerHTML = error;
-          })
-          .finally(() => {
-            document.getElementById("name").value = "";
-            document.getElementById("username").value = "";
-            document.getElementById("email").value = "";
           });
       };
     </script>
